@@ -1,0 +1,209 @@
+{
+  "scopeName": "source.nexacro.xml",
+  "patterns": [
+    {
+      "name": "meta.tag.preprocessor.xml",
+      "begin": "<\\?",
+      "end": "\\?>"
+    },
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#script"
+    },
+    {
+      "include": "#cdata"
+    },
+    {
+      "include": "#tag"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.block.xml",
+          "begin": "<!--",
+          "end": "-->"
+        }
+      ]
+    },
+    "cdata": {
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.tag"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.tag"
+        }
+      },
+      "begin": "<!\\[CDATA\\[",
+      "end": "\\]\\]>",
+      "patterns": [
+        {
+          "include": "#js"
+        }
+      ]
+    },
+    "script": {
+      "begin": "(<)(Script)(\\b[^>]*)(>)",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag"
+        },
+        "2": {
+          "name": "entity.name.tag"
+        },
+        "3": {
+          "patterns": [
+            {
+              "include": "#attrs"
+            }
+          ]
+        },
+        "4": {
+          "name": "punctuation.definition.tag"
+        }
+      },
+      "end": "(</)(Script)(>)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag"
+        },
+        "2": {
+          "name": "entity.name.tag"
+        },
+        "3": {
+          "name": "punctuation.definition.tag"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#cdata"
+        },
+        {
+          "include": "#js"
+        }
+      ]
+    },
+    "tag": {
+      "begin": "(</?)([\\w:.-]+)",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag"
+        },
+        "2": {
+          "name": "entity.name.tag"
+        }
+      },
+      "end": "/?>",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.tag"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#attrs"
+        }
+      ]
+    },
+    "attrs": {
+      "patterns": [
+        {
+          "match": "([\\w:.-]+)(=)",
+          "captures": {
+            "1": {
+              "name": "entity.other.attribute-name"
+            },
+            "2": {
+              "name": "punctuation.separator.key-value"
+            }
+          }
+        },
+        {
+          "name": "string.quoted.double.xml",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.entity",
+              "match": "&[#\\w]+;"
+            },
+            {
+              "name": "variable.other.binding",
+              "match": "@\\w+"
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.single.xml",
+          "begin": "'",
+          "end": "'"
+        }
+      ]
+    },
+    "js": {
+      "patterns": [
+        {
+          "name": "comment.block",
+          "begin": "/\\*",
+          "end": "\\*/"
+        },
+        {
+          "name": "comment.line.double-slash",
+          "match": "//.*$"
+        },
+        {
+          "name": "string.quoted.double",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape",
+              "match": "\\\\."
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.single",
+          "begin": "'",
+          "end": "'",
+          "patterns": [
+            {
+              "name": "constant.character.escape",
+              "match": "\\\\."
+            }
+          ]
+        },
+        {
+          "name": "constant.numeric",
+          "match": "\\b(0[xX][0-9a-fA-F]+|\\d+(\\.\\d+)?)\\b"
+        },
+        {
+          "name": "constant.language",
+          "match": "\\b(true|false|null|undefined|NaN|Infinity)\\b"
+        },
+        {
+          "name": "keyword.control",
+          "match": "\\b(if|else|for|while|do|switch|case|default|break|continue|return|try|catch|finally|throw|in|with)\\b"
+        },
+        {
+          "name": "keyword.control.new",
+          "match": "\\b(new|delete|typeof|instanceof|void)\\b"
+        },
+        {
+          "name": "storage.type",
+          "match": "\\b(var|function)\\b"
+        },
+        {
+          "name": "variable.language",
+          "match": "\\bthis\\b"
+        }
+      ]
+    }
+  }
+}

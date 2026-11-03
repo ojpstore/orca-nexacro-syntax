@@ -1,0 +1,40 @@
+{
+  "manifestVersion": 2,
+  "id": "orca-nexacro-syntax",
+  "name": "Nexacro",
+  "version": "0.1.0",
+  "description": "Nexacro N syntax highlighting (.xfdl/.xadl/.xprj/.xjs) with embedded script.",
+  "engines": {
+    "orca": ">=1.4.246"
+  },
+  "execution": "data",
+  "contributes": {
+    "syntaxes": [
+      {
+        "id": "nexacro-xml",
+        "title": "Nexacro (XML)",
+        "scopeName": "source.nexacro.xml",
+        "path": "syntaxes/nexacro-xml.tmLanguage.json",
+        "configuration": "syntaxes/language-configuration.json",
+        "extensions": [
+          ".xfdl",
+          ".xadl",
+          ".xprj",
+          ".xcss",
+          ".xmsg",
+          ".xdataset"
+        ]
+      },
+      {
+        "id": "nexacro-script",
+        "title": "Nexacro (Script)",
+        "scopeName": "source.nexacro.script",
+        "path": "syntaxes/nexacro-script.tmLanguage.json",
+        "configuration": "syntaxes/language-configuration.json",
+        "extensions": [
+          ".xjs"
+        ]
+      }
+    ]
+  }
+}
