@@ -1,6 +1,6 @@
 {
   "manifestVersion": 2,
-  "id": "orca-nexacro-syntax",
+  "id": "nexacro-syntax",
   "name": "Nexacro",
   "version": "0.1.0",
   "description": "Nexacro N syntax highlighting (.xfdl/.xadl/.xprj/.xjs) with embedded script.",
